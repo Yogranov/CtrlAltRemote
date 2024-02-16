@@ -1,4 +1,5 @@
 from os import system
+import ctypes
 from threading import Thread
 import json
 from flask import Flask, request
@@ -34,6 +35,16 @@ def notify():
     Thread(target=toast, args=(title, message)).start()
 
     return json.dumps({"message": "Notification sent"})
+
+@app.route('/screen-off', methods=['GET'])
+def turn_off_screen():
+    ctypes.windll.user32.SendMessageW(65535, 274, 61808, 2)
+    return json.dumps({"message": "Screen is turned off"})
+
+@app.route('/screen-on', methods=['GET'])
+def turn_on_screen():
+    ctypes.windll.user32.SendMessageW(65535, 274, 61808, -1)
+    return json.dumps({"message": "Screen is turned on"})
 
 ###################
 ## GET functions ##

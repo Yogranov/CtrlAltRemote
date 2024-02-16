@@ -8,6 +8,8 @@ Available features:
 - Hibernate
 - Sleep
 - Pop up a notification
+- Turn off the monitor
+- Turn on the monitor
 
 Getting system info:
 - CPU usage
